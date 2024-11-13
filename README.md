@@ -11,3 +11,6 @@ Features:
 
 Thanks to:
 - Udokus, the original creator of the addon.
+
+Changelog:
+v5.0.7 -> Mongoose Bite now resets the attack bar.
