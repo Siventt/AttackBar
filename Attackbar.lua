@@ -244,8 +244,9 @@ function Abar_spellhit(arg1)
     rs = rs - math.mod(rs, 0.01)
     Abar_Mhrs(trs, "Wand [" .. ons .. "s]", .7, .1, 1)
   elseif (spell == "Raptor Strike" or spell == "Heroic Strike" or
-          spell == "Maul" or spell == "Cleave" or spell == "Slam" or 
-		  spell == "Holy Strike") and AttackBarDB.melee == true then
+          spell == "Maul" or spell == "Cleave" or spell == "Slam"
+          or spell == "Mongoose Bite")
+         and AttackBarDB.melee == true then
     Abar_meleeHit()
   end
 end
@@ -277,7 +278,7 @@ function abar_spelldir(spellname)
     elseif spellname == "Shoot Crossbow" then
       trs = rs
       rs = rs - math.mod(rs, 0.01)
-      Abar_Mhrs(trs - 1, "X-Bow [" ..(rs) .. "s]", 1, .5, 0)
+      Abar_Mhrs(trs - 1, "Crossbow [" ..(rs) .. "s]", 1, .5, 0)
     elseif spellname == "Aimed Shot" then
       trs = rs
       rs = rs - math.mod(rs, 0.01)
@@ -401,4 +402,3 @@ function ebar_ohs(bartime, text, r, g, b)
   ebar_oh:SetValue(ebar_oh.st)
   ebar_oh:Show()
 end
-
