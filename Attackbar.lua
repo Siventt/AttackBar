@@ -244,8 +244,7 @@ function Abar_spellhit(arg1)
     rs = rs - math.mod(rs, 0.01)
     Abar_Mhrs(trs, "Wand [" .. ons .. "s]", .7, .1, 1)
   elseif (spell == "Raptor Strike" or spell == "Heroic Strike" or
-          spell == "Maul" or spell == "Cleave" or spell == "Slam"
-          or spell == "Mongoose Bite")
+          spell == "Maul" or spell == "Cleave")
          and AttackBarDB.melee == true then
     Abar_meleeHit()
   end
