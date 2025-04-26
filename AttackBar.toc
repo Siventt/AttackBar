@@ -1,9 +1,10 @@
 ## Interface: 11200
-## Title: AttackBar TW Edition
-## Version: 5.0.6
-## Author: Udokus, Sivent
+## Title: AttackBar |cff7fff7f TurtleWOW|r
+## Version: 5.0.7
+## Author: Sivent
+## LegacyAuthor: Udokus
 ## X-Credits: Roablock for cleanup
-## Notes: Displays a progress bar for your and enemy attack speed
-
+## Notes: Displays a progress bar for autoattacks
 ## SavedVariables: AttackBarDB
+
 Attackbar.xml

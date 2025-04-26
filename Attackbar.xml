@@ -1,5 +1,6 @@
 ﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
   <Script file="Attackbar.lua"/>
+
   <Frame name="abar_core">
     <Scripts>
       <OnLoad>
@@ -20,6 +21,7 @@
       </OnEvent>
     </Scripts>
   </Frame>
+  
   <Frame name="Abar_Frame" toplevel="true" enableMouse="true" movable = "true" parent="UIParent" hidden="true">
     <Size>
       <AbsDimension x="206" y="52"/>
@@ -69,6 +71,7 @@
       </OnLoad>
     </Scripts>
   </Frame>
+
   <StatusBar name="AbarBar" hidden="true" drawLayer="BORDER" parent="UIParent" virtual="true" toplevel="true">
     <Size>
       <AbsDimension x="195" y="13"/>
@@ -158,6 +161,7 @@
 	
   <StatusBar name="Abar_Mhr" inherits="AbarBar" parent="UIParent"/>
   <StatusBar name="Abar_Oh" inherits="AbarBar" parent="UIParent"/>
+
   <Frame name="ebar_Frame" toplevel="true" enableMouse="true" movable = "true" parent="UIParent" hidden="true">
     <Size>
       <AbsDimension x="206" y="52"/>

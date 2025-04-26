@@ -6,11 +6,11 @@ AttackBar - a World of Warcraft (1.12.1) and TurtleWoW addon
 Features:
 - Use "/abar" to show the addon's customization options.
 - Player and Enemy Swing Timer. Main Hand and Off Hand.
-- Support for TurtleWoW's "Holy Strike" new ability.
 - Customizable background bar color.
 
 Thanks to:
-- Udokus, the original creator of the addon.
+- Udokus, the original creator.
 
 Changelog:
 v5.0.7 -> Mongoose Bite now resets the attack bar.
+v5.0.8 -> Added total attack speed on bar.

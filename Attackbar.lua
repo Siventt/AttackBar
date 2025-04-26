@@ -8,6 +8,7 @@ local offh = 0
 local onh = 0
 local eons = 0.000
 local eoffs = 0.000
+local tons = 0.000
 
 if not(AttackBarDB) then AttackBarDB = { } end
 
@@ -141,15 +142,17 @@ function Abar_chat(msg)
 
   else
     DEFAULT_CHAT_FRAME:AddMessage('Abar options:');
-    DEFAULT_CHAT_FRAME:AddMessage('lock - to lock and hide the anchor');
+    DEFAULT_CHAT_FRAME:AddMessage('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
     DEFAULT_CHAT_FRAME:AddMessage('unlock - to unlock and show the anchor');
-    DEFAULT_CHAT_FRAME:AddMessage('fix - to reset the values should they go awry, wait 5 sec after attacking to use this command');
+    DEFAULT_CHAT_FRAME:AddMessage('lock - to lock and hide the anchor');
     DEFAULT_CHAT_FRAME:AddMessage('melee - to turn on and off the melee bar(s)');
     DEFAULT_CHAT_FRAME:AddMessage('range - to turn on and off the ranged bar');
     DEFAULT_CHAT_FRAME:AddMessage('pvp - to turn on and off the enemy player bar(s)');
     DEFAULT_CHAT_FRAME:AddMessage('mob - to turn on and off the enemy mob bar(s)');
     DEFAULT_CHAT_FRAME:AddMessage('text - toggle from standard to line to no texture');
     DEFAULT_CHAT_FRAME:AddMessage('color - change the background color of the bar');
+    DEFAULT_CHAT_FRAME:AddMessage('fix - to reset the values should they go awry,'); 
+    DEFAULT_CHAT_FRAME:AddMessage('      wait 5 sec after attacking to use this command');
   end
 end
 
@@ -163,7 +166,10 @@ function Abar_reset()
 end
 
 function Abar_event(event)
-  if (event == "CHAT_MSG_COMBAT_SELF_MISSES" or event == "CHAT_MSG_COMBAT_SELF_HITS") and AttackBarDB.melee == true then Abar_selfhit(arg1) end
+  if (event == "CHAT_MSG_COMBAT_SELF_MISSES" or event == "CHAT_MSG_COMBAT_SELF_HITS") 
+      and AttackBarDB.melee == true then 
+    Abar_selfhit(arg1) 
+  end
   if event == "PLAYER_LEAVE_COMBAT" then Abar_reset() end
   if event == "VARIABLES_LOADED" then Abar_loaded() end
   if event == "CHAT_MSG_SPELL_SELF_DAMAGE" then Abar_spellhit(arg1) end
@@ -181,35 +187,6 @@ end
 -- PLAYER BAR CODE --
 -----------------------------------------------------------------------------------------------------------------------
 
-function Abar_meleeHit()
-    ons, offs = UnitAttackSpeed("player");
-    local tons
-    if offs then
-      ont, offt = GetTime(), GetTime()
-      if ((math.abs((ont - pont) - ons) <= math.abs((offt - pofft) - offs)) and not(onh <= offs / ons)) 
-          or offh >= ons / offs then
-        if pofft == 0 then pofft = offt end
-        pont = ont
-        tons = ons
-        offh = 0
-        onh = onh + 1
-        ons = ons - math.mod(ons, 0.01)
-        Abar_Mhrs(tons, "", AttackBarDB.r, AttackBarDB.g, AttackBarDB.b)
-      else
-        pofft = offt
-        offh = offh + 1
-        onh = 0
-        offs = offs - math.mod(offs, 0.01)
-        Abar_Ohs(offs, "", AttackBarDB.r, AttackBarDB.g, AttackBarDB.b)
-      end
-    else
-      ont = GetTime()
-      tons = ons
-      ons = ons - math.mod(ons, 0.01)
-      Abar_Mhrs(tons, "", AttackBarDB.r, AttackBarDB.g, AttackBarDB.b)
-    end
-end
-
 function Abar_selfhit(arg1)
 
   local a, b, spell = string.find(arg1, "Your (.+) hits")
@@ -223,6 +200,36 @@ function Abar_selfhit(arg1)
   else
     Abar_meleeHit()
   end
+end
+
+function Abar_meleeHit()
+    ons, offs = UnitAttackSpeed("player")
+
+    if offs then
+      ont, offt = GetTime(), GetTime()
+      if ((math.abs((ont - pont) - ons) <= math.abs((offt - pofft) - offs)) and not(onh <= offs / ons)) 
+          or offh >= ons / offs then
+        if pofft == 0 then pofft = offt end
+        pont = ont
+        tons = ons
+        offh = 0
+        onh = onh + 1
+        ons = ons - math.mod(ons, 0.01)
+        Abar_Mhrs(tons, "["..ons.."] ", AttackBarDB.r, AttackBarDB.g, AttackBarDB.b)
+      else
+        pofft = offt
+        offh = offh + 1
+        onh = 0
+        offs = offs - math.mod(offs, 0.01)
+        Abar_Ohs(offs, "["..offs.."] ", AttackBarDB.r, AttackBarDB.g, AttackBarDB.b)
+      end
+    else
+      ont = GetTime()
+      tons = ons
+      ons = ons - math.mod(ons, 0.01)
+      Abar_Mhrs(tons, "["..ons.."] ", AttackBarDB.r, AttackBarDB.g, AttackBarDB.b)
+    end
+    tons = 0.000
 end
 
 function Abar_spellhit(arg1)
